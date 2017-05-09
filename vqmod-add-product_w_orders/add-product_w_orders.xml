@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <id>Add products with orders into menu</id>
+    <version>1.0.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author>BigMaverick</author>
+
+    <file name="admin/controller/common/menu.php">
+        <operation info="Add new menu item language">
+            <search position="after"><![CDATA[
+            $data['text_product'] = $this->language->get('text_product');
+            ]]></search>
+            <add><![CDATA[
+            $data['text_product_w_orders'] = $this->language->get('text_product_w_orders');
+            ]]></add>
+        </operation>
+        <operation info="Add new menu item">
+            <search position="after"><![CDATA[
+            $data['product'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'], 'SSL');
+            ]]></search>
+            <add><![CDATA[
+            $data['product_w_orders'] = $this->url->link('catalog/product_w_orders', 'token=' . $this->session->data['token'], 'SSL');
+            ]]></add>
+        </operation>
+    </file> 
+    <file name="admin/language/english/common/menu.php">
+        <operation info="Add new menu item language">
+            <search position="after"><![CDATA[
+            $_['text_product']                     = 'Products';
+            ]]></search>
+            <add><![CDATA[
+            $_['text_product_w_orders']            = 'Products with Orders';
+            ]]></add>
+        </operation>
+    </file> 
+    <file name="admin/language/russian/common/menu.php">
+        <operation info="Add new menu item language">
+            <search position="after"><![CDATA[
+            $_['text_product']                     = 'Товары';
+            ]]></search>
+            <add><![CDATA[
+            $_['text_product_w_orders']            = 'Товары с заказами';
+            ]]></add>
+        </operation>
+    </file> 
+    <file name="admin/view/template/common/menu.tpl">
+        <operation info="Add new menu item to template">
+            <search position="after"><![CDATA[
+            <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
+            ]]></search>
+            <add><![CDATA[
+            <li><a href="<?php echo $product_w_orders; ?>"><?php echo $text_product_w_orders; ?></a></li>
+            ]]></add>
+        </operation>
+    </file> 
+</modification>
