@@ -457,15 +457,15 @@ class ModelCatalogProductWOrders extends Model {
 
 	public function getProductOrders($product_id) {
         $query = $this->db->query(
-"SELECT wt4oc_order.order_id,
-       wt4oc_order.invoice_no,
-       wt4oc_order.total,
-       wt4oc_order.date_added,
-       wt4oc_order.date_modified
-FROM teashopb_bzwtsh.wt4oc_order_product    wt4oc_order_product
-     INNER JOIN teashopb_bzwtsh.wt4oc_order wt4oc_order
-        ON (wt4oc_order_product.order_id = wt4oc_order.order_id)
-WHERE (wt4oc_order_product.product_id = " . (int)$product_id . ")"
+"SELECT " . DB_PREFIX . "order.order_id,
+       " . DB_PREFIX . "order.invoice_no,
+       " . DB_PREFIX . "order.total,
+       " . DB_PREFIX . "order.date_added,
+       " . DB_PREFIX . "order.date_modified
+FROM " . DB_PREFIX . "order_product
+     INNER JOIN " . DB_PREFIX . "order
+        ON (" . DB_PREFIX . "order_product.order_id = " . DB_PREFIX . "order.order_id)
+WHERE (" . DB_PREFIX . "order_product.product_id = " . (int)$product_id . ")"
 );
 
 		//return $query->rows;
